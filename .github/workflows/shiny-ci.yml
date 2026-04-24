@@ -23,7 +23,7 @@ jobs:
         run: Rscript tests/testthat.R
       
       - name: Deploy to shinyapps.io
-        if: github.ref == 'refs/heads/main' 
+        if: github.ref == 'refs/heads/main'
         env:
           NAME: ${{ secrets.SHINYAPPS_NAME }}
           TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
@@ -32,5 +32,5 @@ jobs:
           install.packages('rsconnect')
           library(rsconnect)
           setAccountInfo(name = Sys.getenv("NAME"), token = Sys.getenv("TOKEN"), secret = Sys.getenv("SECRET"))
-          deployApp(appName = 'gios-air-quality-dashboard') 
+          deployApp(appName = 'gios-air-quality-dashboard', forceUpdate = TRUE) 
         shell: Rscript {0}
