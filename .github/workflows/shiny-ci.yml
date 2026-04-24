@@ -16,12 +16,11 @@ jobs:
       
       - name: Install Dependencies 
         run: | 
-          install.packages(("shiny", "httr", "jsonlite", "tidyverse", "leaflet", "DT", "plotly", "shinycssloaders", "testthat"))
+          install.packages(c("shiny", "httr", "jsonlite", "tidyverse", "leaflet", "DT", "plotly", "shinycssloaders", "testthat"))
         shell: Rscript {0}
         
       - name: Run Tests
-        run: |
-          source("tests/testthat.R")
+        run: Rscript tests/testthat.R
         shell: Rscript {0}
       
       - name: Deploy to shinyapps.io
