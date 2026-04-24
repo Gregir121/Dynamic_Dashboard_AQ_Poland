@@ -1,15 +1,11 @@
 library(testthat)
-source("../../api_functions.R")
+#source("../../api_functions.R")
 
 test_that("API Response as expected", {
   df <- fetch_stations()
   expect_s3_class(df, "data.frame")
   expect_gt(nrow(df), 0)
 })
-
-
-
-
 
 test_that("Function fetch_sensors returns expected data", {
   data <- fetch_sensors(11)
