@@ -21,7 +21,6 @@ jobs:
         
       - name: Run Tests
         run: Rscript tests/testthat.R
-        shell: Rscript {0}
       
       - name: Deploy to shinyapps.io
         if: github.ref == 'refs/heads/main' 
