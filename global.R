@@ -55,7 +55,8 @@ translate_params <- c(
   "tlenek węgla" = "Carbon Monoxide (CO)",
   "dwutlenek siarki" = "Sulphur Dioxide (SO2)",
   "benzen" = "Benzene",
-  "tlenek azotu" = "Nitrogen Oxide (NO)"
+  "tlenek azotu" = "Nitrogen Oxide (NO)",
+  "rtęć całkowita gazowa (TGM)" = "Total Gaseous Mercury (TGM)"
 )
 
 translate_provinces <- c(
