@@ -1,3 +1,5 @@
+library(jsonlite)
+library(httr)
 
 fetch_stations <- function() {
   url <- "https://api.gios.gov.pl/pjp-api/v1/rest/station/findAll?size=500"
