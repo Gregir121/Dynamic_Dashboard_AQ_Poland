@@ -1,0 +1,38 @@
+name: Shiny App CI
+
+on: [push, pull_request]
+
+jobs: 
+  test:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout code 
+        uses: actions/checkout@v4
+        
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      
+      - name: Install Dependencies 
+        run: | 
+          install.packagesc(("shiny", "httr", "jsonlite", "tidyverse", "leaflet", "DT", "plotly", "shinycssloaders", "testthat"))
+        shell: Rscrpit{0}
+        
+      - name: Run Tests
+        run: |
+          source("tests/testthat.R")
+        shell: Rscript{0}
+      
+      - name: Deploy to shinyapps.io
+        if: github.ref == 'refs/heads/main' # Wysyłaj tylko gdy zmiany idą do głównej gałęzi
+        env:
+          NAME: ${{ secrets.SHINYAPPS_NAME }}
+          TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
+          SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+        run: |
+          install.packages('rsconnect')
+          library(rsconnect)
+          setAccountInfo(name = Sys.getenv("NAME"), token = Sys.getenv("TOKEN"), secret = Sys.getenv("SECRET"))
+          deployApp(appName = 'moje_gios_shiny') # Tutaj wpisz nazwę swojej apki
+        shell: Rscript {0}
